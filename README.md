@@ -6,3 +6,7 @@ https://ngee-arctic.ornl.gov/highlights/developing-a-land-surface-modeling-works
 
 Docker hub: https://hub.docker.com/repository/docker/serbinsh/ngeearctic_elm_containers
 
+<br>
+
+Source code citation:
+[![DOI](https://zenodo.org/badge/652636495.svg)](https://zenodo.org/badge/latestdoi/652636495)

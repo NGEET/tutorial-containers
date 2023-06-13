@@ -1,5 +1,6 @@
 # ----------------------------------------------------------------------
 # JupyterLab Notebook for analyzing E3SM-ELM land model output
+# with Google Earth Engine and GEEmap
 # ----------------------------------------------------------------------
 
 FROM jupyter/scipy-notebook:lab-3.3.2
@@ -7,21 +8,30 @@ LABEL maintainer.name="Shawn P. Serbin" \
       maintainer.email="sserbin@bnl.gov" \
       author.name="Shawn P. Serbin" \
       author.email="sserbin@bnl.gov" \
-      description="ELM Analysis Jupyter-Lab Container"
+      description="Jupyter-SciPy Container"
 
 # install Python packages you often use
 RUN set -ex \
    && conda install --quiet --yes \
    # choose the Python packages you need
    'matplotlib' \
+   'plotly' \
+   'folium' \
    'dask' \
    'pandas' \
    'xarray' \
+   'geopandas' \
+   'ipyleaflet' \
    && conda clean --all -f -y \
    && conda install --quiet --yes -c conda-forge \
    'nc-time-axis' \
    'netCDF4' \
    && conda clean --all -f -y \
+   && mamba install --quiet --yes -c conda-forge \
+   'earthengine-api' \
+   'geemap' \
+   'pygis' \
+   && mamba clean --all -f -y \
    && rm -rf "/home/${NB_USER}/.cache/yarn" \
    && rm -rf "/home/${NB_USER}/.node-gyp" \
    && fix-permissions "${CONDA_DIR}" \

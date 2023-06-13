@@ -11,7 +11,7 @@
 # =======================================================================================
 # How to use this with the Docker container, run:
 # docker run -t -i --hostname=docker --user $(id -u):$(id -g) -v /Users/sserbin/Data/testing:/inputdata \
-# -v /Users/sserbin/Data/GitHub/fasst_simulation_tools/met_scripts/ngeearctic:/scripts \
+# -v /Users/sserbin/Data/GitHub/ngeearctic_elm_containers/scripts/met_scripts/ngeearctic/scripts \
 # test_ngee_elm /scripts/download_elm_singlesite_forcing_data.sh
 #
 # =======================================================================================

@@ -112,7 +112,7 @@ RUN cd /tools \
 # need to add the additional examples here prior to the workshop
 # including the usepft runscripts
 RUN cd /scripts \
-    && wget $TOOLS_REPOSITORY_RAW_URL/main/met_scripts/ngeearctic/download_elm_singlesite_forcing_data.sh \
+    && wget $REPOSITORY_RAW_URL/main/scripts/met_scripts/ngeearctic/download_elm_singlesite_forcing_data.sh \
     && wget $TOOLS_REPOSITORY_RAW_URL/main/elm_scripts/ngeearctic_elm_scripts/olmt_scripts/ngeearctic_site_fullrun_userdata_docker.sh \
     && mv ngeearctic_site_fullrun_userdata_docker.sh OLMT_docker_example.sh \
     && chown $USER:dockerusers download_elm_singlesite_forcing_data.sh \

@@ -10,3 +10,7 @@ Docker hub: https://hub.docker.com/repository/docker/serbinsh/ngeearctic_elm_con
 
 Source code citation:
 [![DOI](https://zenodo.org/badge/652636495.svg)](https://zenodo.org/badge/latestdoi/652636495)
+
+<br>
+
+![DOE NGEE-Arctic October 2022 ELM Modeling Workshop Flyer](images/workshop_flyer.png)

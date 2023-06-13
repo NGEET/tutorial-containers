@@ -2,31 +2,27 @@
 # https://matt-wxw.medium.com/build-docker-images-for-platform-arm64-apple-m1-and-amd64-on-apple-m1-with-docker-desktop-7c6dd5f7f325
 # https://andrewlock.net/creating-multi-arch-docker-images-for-arm64-from-windows/
 
-#### Build the ARM64 compliant baseOS image (e.g. gcc850 w/ open-mpi 3.1.6)
-# Step 1. Create a new docker builder (only needs to be done once)
-docker buildx create --name multibuilder --use
-
-# Step 2. Change to local simulation_containers git repo directory
-cd /Users/sserbin/Data/GitHub/simulation_containers
-
-# Step 3. Build an ARM64 compliant version of the baseOS container. This is for local builds only
-docker buildx build --push -t fasstsimulation/baseos:gcc850ompi316_arm64 \
---no-cache --platform linux/arm64 -f docker/baseos/gcc850ompi316/Dockerfile_arm64 .
-
-
 #### Build the AMD64/ARM64 compliant baseOS image (e.g. gcc850 w/ open-mpi 3.1.6)
 # Step 1. Create a new docker builder (only needs to be done once)
 docker buildx create --name multibuilder --use
 
 # Step 2. Change to local simulation_containers git repo directory
-cd /Users/sserbin/Data/GitHub/simulation_containers
+cd /Users/sserbin/Data/GitHub/ngeearctic_elm_containers
 
 # Step 3a. Build an AMD64/ARM64 compliant version of the baseOS container. This is for local builds only
-docker buildx build --push -t fasstsimulation/baseos:gcc850ompi316_multiarch \
+docker buildx build --push -t serbinsh/ngeearctic_elm_containers:baseos_gcc850ompi316_multiarch \
 --no-cache --platform linux/amd64,linux/arm64 -f docker/baseos/gcc850ompi316/Dockerfile .
 
+# Just an ARM64 compliant image for testing
+docker buildx build --push -t serbinsh/ngeearctic_elm_containers:baseos_gcc850ompi316_arm64 \
+--no-cache --platform linux/arm64 -f docker/baseos/gcc850ompi316/Dockerfile_arm64 .
+
+# quick test using cached build
+docker buildx build --push -t serbinsh/ngeearctic_elm_containers:baseos_gcc850ompi316_arm64 \
+--platform linux/arm64 -f docker/baseos/gcc850ompi316/Dockerfile_arm64 .
+
 # Step 3b. Build an AMD64/ARM64 compliant version of the baseOS container w/ non-parallel libs. This is for local builds only
-docker buildx build --push -t fasstsimulation/baseos:gcc850ompi316-serial_multiarch \
+docker buildx build --push -t serbinsh/ngeearctic_elm_containers:baseos_gcc850ompi316-serial_multiarch \
 --no-cache --platform linux/amd64,linux/arm64 -f docker/baseos/gcc850_serial/Dockerfile .
 
 
@@ -38,11 +34,11 @@ docker buildx create --name multibuilder --use
 cd /Users/sserbin/Data/GitHub/simulation_containers
 
 # Step 3a. Build an ARM64 compliant version of the ELM docker. This is for local builds only
-docker buildx build --push -t fasstsimulation/elm-builds:elm_v2-for-ngee_arm64 --no-cache  \
---platform linux/arm64 -f docker/elm/elm_v2-for-ngee/Dockerfile_arm64 .
+#docker buildx build --push -t fasstsimulation/elm-builds:elm_v2-for-ngee_arm64 --no-cache  \
+#--platform linux/arm64 -f docker/elm/elm_v2-for-ngee/Dockerfile_arm64 .
 
 # Step 3b. Build multi-arch ELM
-docker buildx build --push -t fasstsimulation/elm-builds:elm_v2-for-ngee_multiarch --no-cache  \
+docker buildx build --push -t serbinsh/ngeearctic_elm_containers:elm_v2-for-ngee_multiarch --no-cache  \
 --platform linux/amd64,linux/arm64 -f docker/elm/elm_v2-for-ngee/Dockerfile_multiarch .
 
 # Step 3c. Build AMD64 and ARM64 compliant version of the serial lib ELM docker. This is for local builds only

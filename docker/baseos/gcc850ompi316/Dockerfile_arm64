@@ -159,9 +159,10 @@ RUN cd / \
     && rm netcdf-fortran-4.5.4.tar.gz
 
 ## Install python libraries for OLMT
-RUN pip3 install wheel
-RUN pip3 install numpy scipy mpi4py netCDF4
-RUN pip3 install h5py configparser cftime
+RUN pip3 install wheel=='0.32.3'
+RUN pip3 install numpy=='1.21.6' scipy=='1.7.3' mpi4py=='3.1.3' 
+RUN pip3 install netCDF4=='1.6.1'
+RUN pip3 install h5py=='3.7.0' configparser=='5.3.0' cftime=='1.6.2'
 
 # Add symlink to python3 for running OLMT
 RUN ln -sf /usr/bin/python3 /usr/bin/python

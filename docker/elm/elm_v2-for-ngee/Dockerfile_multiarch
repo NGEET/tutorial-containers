@@ -3,7 +3,7 @@
 # E3SM/ELM land model docker container
 # ----------------------------------------------------------------------
 
-FROM fasstsimulation/baseos:gcc850ompi316_multiarch
+FROM serbinsh/ngeearctic_elm_containers:baseos_gcc850ompi316_multiarch
 LABEL maintainer.name="Shawn P. Serbin" \
       maintainer.email="sserbin@bnl.gov" \
       author.name="Shawn P. Serbin" \
@@ -13,8 +13,8 @@ LABEL maintainer.name="Shawn P. Serbin" \
       version.baseos="gcc8.5"
 
 # where to get the ELM source code
-ENV REPOSITORY_URL=https://github.com/FASSt-simulation/simulation_containers
-ENV REPOSITORY_RAW_URL=https://raw.githubusercontent.com/FASSt-simulation/simulation_containers
+ENV REPOSITORY_URL=https://github.com/TESTgroup-BNL/ngeearctic_elm_containers
+ENV REPOSITORY_RAW_URL=https://raw.githubusercontent.com/TESTgroup-BNL/ngeearctic_elm_containers
 ENV TOOLS_REPOSITORY_RAW_URL=https://raw.githubusercontent.com/FASSt-simulation/fasst_simulation_tools
 ENV USER=modeluser
 
@@ -102,8 +102,9 @@ USER ${USER}
 RUN cd /tools \
     && git -c http.sslVerify=false clone -b Arctic-userpft --single-branch https://github.com/dmricciuto/OLMT.git \
     && cd OLMT/ \
-    # add specific git commit as src - to try and stabilize changes and avoid new potential bugs
-    && git reset --hard 'c208528360d59f46630ef94fe4a3a42cbfd3acab' \
+    # add specific git commit to version used in the October 2022 modeling workshop
+    #&& git reset --hard 'c208528360d59f46630ef94fe4a3a42cbfd3acab' \
+    && git reset --hard '1b2a02c34deda8a2a796bb68325a87ddb3764c32' \
     && chown $USER:dockerusers -R /tools/OLMT \
     && chmod -R 777 /tools/OLMT
 

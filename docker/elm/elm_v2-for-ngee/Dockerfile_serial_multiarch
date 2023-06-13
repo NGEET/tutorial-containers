@@ -5,7 +5,7 @@
 # AMD64/ARM64 version
 # ----------------------------------------------------------------------
 
-FROM fasstsimulation/baseos:gcc850ompi316-serial_multiarch
+FROM serbinsh/ngeearctic_elm_containers:baseos_gcc850ompi316-serial_multiarch
 LABEL maintainer.name="Shawn P. Serbin" \
       maintainer.email="sserbin@bnl.gov" \
       author.name="Shawn P. Serbin" \
@@ -15,9 +15,8 @@ LABEL maintainer.name="Shawn P. Serbin" \
       version.baseos="gcc8.5"
 
 # where to get the ELM source code
-ENV REPOSITORY_URL=https://github.com/FASSt-simulation/simulation_containers
-ENV REPOSITORY_RAW_URL=https://raw.githubusercontent.com/FASSt-simulation/simulation_containers
-ENV TOOLS_REPOSITORY_RAW_URL=https://raw.githubusercontent.com/FASSt-simulation/fasst_simulation_tools
+ENV REPOSITORY_URL=https://github.com/TESTgroup-BNL/ngeearctic_elm_containers
+ENV REPOSITORY_RAW_URL=https://raw.githubusercontent.com/TESTgroup-BNL/ngeearctic_elm_containers
 ENV USER=modeluser
 
 # Add new group, user, and user directory with user permissions
@@ -103,16 +102,16 @@ USER ${USER}
 RUN cd /tools \
     && git -c http.sslVerify=false clone -b Arctic-userpft --single-branch https://github.com/dmricciuto/OLMT.git \
     && cd OLMT/ \
-    # add specific git commit as src - to try and stabilize changes and avoid new potential bugs
-    && git reset --hard 'c208528360d59f46630ef94fe4a3a42cbfd3acab' \
+    # add specific git commit to version used in the October 2022 NGEE Arctic Modeling Workshop
+    && git reset --hard '1b2a02c34deda8a2a796bb68325a87ddb3764c32' \
     && chown $USER:dockerusers -R /tools/OLMT \
     && chmod -R 777 /tools/OLMT
 
 # Copy scripts into /scripts to make availible to users
 RUN cd /scripts \
-    && wget $TOOLS_REPOSITORY_RAW_URL/main/met_scripts/ngeearctic/download_elm_singlesite_forcing_data.sh \
-    && wget $TOOLS_REPOSITORY_RAW_URL/main/elm_scripts/ngeearctic_elm_scripts/olmt_scripts/ngeearctic_site_fullrun_userdata_docker.sh \
-    && wget $TOOLS_REPOSITORY_RAW_URL/main/elm_scripts/ngeearctic_elm_scripts/olmt_scripts/ngeearctic_ensemble_example_docker.sh \
+    && wget $REPOSITORY_RAW_URL/main/scripts/met_scripts/ngeearctic/download_elm_singlesite_forcing_data.sh \
+    && wget $REPOSITORY_RAW_URL/main/scripts/elm_scripts/olmt_scripts/ngeearctic_site_fullrun_userdata_docker.sh \
+    && wget $REPOSITORY_RAW_URL/main/scripts/elm_scripts/olmt_scripts/ngeearctic_ensemble_example_docker.sh \
     && mv ngeearctic_site_fullrun_userdata_docker.sh OLMT_docker_example.sh \
     && mv ngeearctic_ensemble_example_docker.sh OLMT_ens_docker_example.sh \
     && chown $USER:dockerusers download_elm_singlesite_forcing_data.sh \
@@ -121,9 +120,9 @@ RUN cd /scripts \
     && chown $USER:dockerusers OLMT_ens_docker_example.sh \
     && chmod +x OLMT_docker_example.sh \
     && chmod +x OLMT_ens_docker_example.sh \
-    && wget $TOOLS_REPOSITORY_RAW_URL/main/elm_scripts/ngeearctic_elm_scripts/olmt_scripts/param_list_example_kougarok \
+    && wget $REPOSITORY_RAW_URL/main/scripts/elm_scripts/olmt_scripts/param_list_example_kougarok \
     && chown $USER:dockerusers param_list_example_kougarok \
-    && wget $TOOLS_REPOSITORY_RAW_URL/main/elm_scripts/ngeearctic_elm_scripts/olmt_scripts/param_list_example_beo \
+    && wget $REPOSITORY_RAW_URL/main/scripts/elm_scripts/olmt_scripts/param_list_example_beo \
     && chown $USER:dockerusers param_list_example_beo \
     && cd /
 

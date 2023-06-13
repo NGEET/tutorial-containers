@@ -1,14 +1,16 @@
 # Dockerized version of the E3SM Land Model (ELM) used during the October, 2022 NGEE-Arctic modeling workshop
 <br>
 
-Workshop Info:
+**Workshop Info:**
 https://ngee-arctic.ornl.gov/highlights/developing-a-land-surface-modeling-workshop-for-ngee-arctic-scientists
 
-Docker hub: https://hub.docker.com/repository/docker/serbinsh/ngeearctic_elm_containers
+**Docker hub:** https://hub.docker.com/repository/docker/serbinsh/ngeearctic_elm_containers
+
+**Modeling Workshop** [**Wiki pages**](https://github.com/TESTgroup-BNL/ngeearctic_elm_containers/wiki)
 
 <br>
 
-Source code citation:
+**Source code citation:**
 [![DOI](https://zenodo.org/badge/652636495.svg)](https://zenodo.org/badge/latestdoi/652636495)
 
 <br>

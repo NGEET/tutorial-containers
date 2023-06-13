@@ -4,7 +4,8 @@
 #  Download ELM singe-site driver files
 #  Source: GitHub
 #  Source URL: https://github.com/fmyuan/pt-e3sm-inputdata
-#  Source Data URL: https://github.com/fmyuan/pt-e3sm-inputdata/archive/refs/heads/master.zip
+#  Source Data URL - Master: https://github.com/fmyuan/pt-e3sm-inputdata/archive/refs/heads/master.zip
+#  Source Data URL - Workshop: https://github.com/fmyuan/pt-e3sm-inputdata/archive/83686519abb9a60eb48eaf12d97a0763957262ef.zip
 # =======================================================================================
 
 # =======================================================================================

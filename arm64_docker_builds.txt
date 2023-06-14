@@ -33,17 +33,18 @@ docker buildx create --name multibuilder --use
 # Step 2. Change to local simulation_containers git repo directory
 cd /Users/sserbin/Data/GitHub/simulation_containers
 
-# Step 3a. Build an ARM64 compliant version of the ELM docker. This is for local builds only
-#docker buildx build --push -t fasstsimulation/elm-builds:elm_v2-for-ngee_arm64 --no-cache  \
-#--platform linux/arm64 -f docker/elm/elm_v2-for-ngee/Dockerfile_arm64 .
-
-# Step 3b. Build multi-arch ELM
+# Step 3a. Build multi-arch ELM
 docker buildx build --push -t serbinsh/ngeearctic_elm_containers:elm_v2-for-ngee_multiarch --no-cache  \
 --platform linux/amd64,linux/arm64 -f docker/elm/elm_v2-for-ngee/Dockerfile_multiarch .
 
-# Step 3c. Build AMD64 and ARM64 compliant version of the serial lib ELM docker. This is for local builds only
-docker buildx build --push -t fasstsimulation/elm-builds:elm_v2-for-ngee-serial_multiarch --no-cache  \
+# Step 3b. Build AMD64 and ARM64 compliant version of the serial lib ELM docker. This is for local builds only
+docker buildx build --push -t serbinsh/ngeearctic_elm_containers:elm_v2-for-ngee-serial_multiarch --no-cache  \
 --platform linux/amd64,linux/arm64 -f docker/elm/elm_v2-for-ngee/Dockerfile_serial_multiarch .
+
+
+
+
+
 
 
 

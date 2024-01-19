@@ -1,18 +1,7 @@
-# Dockerized version of the E3SM Land Model (ELM) used during the October, 2022 NGEE-Arctic modeling workshop
-<br>
+# NGEE tutorial containers
 
-**Workshop Info:**
-https://ngee-arctic.ornl.gov/highlights/developing-a-land-surface-modeling-workshop-for-ngee-arctic-scientists
+This repository contains the build recipes (i.e. dockerfiles) and associated scripts necessary to build and run a variety of tutorials for the NGEE projects.  They contain builds for both host land model container images as well as analysis containers based on the official [Jupyter Docker Stacks](https://jupyter-docker-stacks.readthedocs.io/en/latest/).
 
-**Docker hub:** https://hub.docker.com/repository/docker/serbinsh/ngeearctic_elm_containers
+This project is forked from the [NGEE-Arctic 2022 tutorial](https://github.com/TESTgroup-BNL/ngeearctic_elm_containers).
 
-**Modeling Workshop** [**Wiki pages**](https://github.com/TESTgroup-BNL/ngeearctic_elm_containers/wiki)
-
-<br>
-
-**Source code citation:**
-[![DOI](https://zenodo.org/badge/652636495.svg)](https://zenodo.org/badge/latestdoi/652636495)
-
-<br>
-
-![DOE NGEE-Arctic October 2022 ELM Modeling Workshop Flyer](images/workshop_flyer.png)
+This repo uses branches to archive particular tutorials.

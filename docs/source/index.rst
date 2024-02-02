@@ -3,18 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Tutorial User's Guide's documentation!
-=================================================
+NGEE Tutorial Setup Guide
+=========================
+
+The **NGEE** (Next Generation Ecosystem Experiment) projects, `NGEE-Arctic`_ and `NGEE-Tropics`_ are supported by the Department of Energy's Office of Science as part of the `Environmental System Science Program`_.  This documentation provides guidance on setting up the necessary software and environments for running the tutorials provided by the NGEE projects.
+
+.. note::
+
+   This documentation is currently under development.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
+   :caption: Table of Contents:
 
    dockersetup
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. _NGEE-Arctic: https://ngee-arctic.ornl.gov/
+.. _NGEE-Tropics: https://ngee-tropics.lbl.gov/
+.. _Environmental System Science Program: https://ess.science.energy.gov/critical-ecosystems/

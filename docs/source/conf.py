@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "Tutorial User's Guide"
+project = "NGEE Tutorial Setup Guide"
 copyright = '2024, Lawrence Berkeley National Laboratory'
 author = 'Gregory Lemieux'
 

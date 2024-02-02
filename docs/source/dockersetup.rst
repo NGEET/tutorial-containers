@@ -77,14 +77,67 @@ Option 2: Command Line
 
 5. Download ELM Docker Container
 --------------------------------
+- Open a terminal window on your computer.
+  - *Windows* users: do this by going to the search bar on your bottom taskbar, searching and then selecting "Windows PowerShell"
+  - *Mac users*: click the magnifying glass on the right side of the menu bar on top of the screen (to open Spotlight search) and type "Terminal", then open the Terminal program
+- In the terminal window, type or copy and paste the code below and hit enter:
+
+.. code-block::
+
+   docker pull serbinsh/ngeearctic_elm_containers:elm_v2-for-ngee_multiarch
+
+- The download can take around 10 minutes or more to complete. If it is going well, your terminal window will show progress with a series of arrows that grow from left to right during each file's download:
+
+.. image:: images/progress.png
+
+- When this download is done, you can check that the container made it into your docker app. Select the "Images" tab in the left-hand menu in Docker. There should be an item that has a name "serbinsh/ngeearctic_elm_containers" (NAME column) and "elm_v2-for-ngee_multiarch" (TAG column).
+
+.. image:: images/download_done.png
 
 6. Download meteorological data
 -------------------------------
+- Open a terminal window on your computer the same way you did for the previous steps (using the same window again is fine too if you still have it open)
+- Type or copy and paste the following command into your terminal and hit enter:
+
+.. code-block::
+
+   docker run -t -i --hostname=docker --user modeluser -v elmdata:/inputdata serbinsh/ngeearctic_elm_containers:elm_v2-for-ngee_multiarch /scripts/download_elm_singlesite_forcing_data.sh
+
+- If the meteorological data download is working, you should see the download progressing with an arrow bouncing left to right like this:
+
+.. image:: images/met_download.png
+
+- When the download is done, you can look in the volumes on your Docker app and see that the elm data folder is now at ~1.2GB
 
 7. Download JupyterLab Docker container for analyzing ELM output
 ----------------------------------------------------------------
 
+We are going to be using JupyterLab for exploring output from the ELM model runs. JupyterLab is an environment that allows Python code, notebooks, and data to be bundled together. We have set up a specific container on Docker for a JupyterLab that includes code for graphing and analyzing ELM output so that will give folks a few basic tools for data exploration without having to learn Python from scratch. You can learn more about JupyterLab here.
+
+- Open a terminal window on your computer (or use an existing terminal window).
+- In the terminal, window type or copy and paste the following code and hit enter:
+
+.. code-block::
+
+   docker pull serbinsh/ngeearctic_elm_containers:elmlab_3.3.2
+
+--------------
+
+After all of these steps, you should have the two primary Docker images on your computer. You can check this in your open terminal by running the following code:
+
+.. code-block::
+
+   docker image ls
+
+You could also check by looking on Docker Desktop and clicking on the "Images" tab on the left-hand menu. Either way, you should see two images listed, one named "elm_v2-for-ngee_multiarch" and named "elmlab_3.3.2":
+
+.. image:: images/check_images.png
+
+Remember that image "elm_v2-for-ngee_multiarch" is the tool we will use for actually running ELM while the image "elmlab_3.3.2" is a series of JupyterLab notebooks we will use for looking at output from the ELM runs.
+
 CONGRATULATIONS
 ---------------
 
-**You are ready for the NGEE Arctic Modex workshop!*
+**You are ready for the NGEE Arctic Modex workshop!**
+
+.. image:: images/kid_meme.png

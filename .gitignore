@@ -3,3 +3,6 @@
 *._*
 .DS_store
 .DS_Store
+
+# readthedocs
+docs/build/

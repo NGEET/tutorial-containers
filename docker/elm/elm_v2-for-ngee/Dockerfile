@@ -5,8 +5,8 @@
 # ----------------------------------------------------------------------
 
 FROM fasstsimulation/baseos:gcc850ompi316-latest
-LABEL maintainer.name="Shawn P. Serbin" \
-      maintainer.email="sserbin@bnl.gov" \
+LABEL maintainer.name="Gregory Lemieux" \
+      maintainer.email="glemieux@lbl.gov" \
       author.name="Shawn P. Serbin" \
       author.email="sserbin@bnl.gov" \
       description="ELM host land model" \
@@ -14,9 +14,9 @@ LABEL maintainer.name="Shawn P. Serbin" \
       version.baseos="gcc8.5"
 
 # where to get the ELM source code
-ENV REPOSITORY_URL=https://github.com/FASSt-simulation/simulation_containers
-ENV REPOSITORY_RAW_URL=https://raw.githubusercontent.com/FASSt-simulation/simulation_containers
-ENV TOOLS_REPOSITORY_RAW_URL=https://raw.githubusercontent.com/FASSt-simulation/fasst_simulation_tools
+ENV REPOSITORY_URL=https://github.com/NGEET/tutorial_containers
+ENV REPOSITORY_RAW_URL=https://raw.githubusercontent.com/NGEET/tutorial_containers
+ENV TOOLS_REPOSITORY_RAW_URL=https://raw.githubusercontent.com/NGEET/tutorial_containers
 ENV USER=modeluser
 
 # Add new group, user, and user directory with user permissions

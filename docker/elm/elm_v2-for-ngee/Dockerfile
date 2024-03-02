@@ -16,8 +16,9 @@ LABEL maintainer.name="Gregory Lemieux" \
 # where to get the ELM source code
 ENV HLM_REPOSITORY_URL=https://github.com/NGEET/E3SM/
 ENV HLM_TAG=elm_v2.1.0-fates_sci.1.68.2_api.31.0.0
-ENV REPOSITORY_RAW_URL=https://raw.githubusercontent.com/NGEET/tutorial_containers
-ENV TOOLS_REPOSITORY_RAW_URL=https://raw.githubusercontent.com/NGEET/tutorial_containers
+ENV REPO_BRANCH=ngeet-2024
+ENV REPOSITORY_RAW_URL=https://raw.githubusercontent.com/NGEET/tutorial-containers
+ENV TOOLS_REPOSITORY_RAW_URL=https://raw.githubusercontent.com/NGEET/tutorial-containers
 ENV USER=modeluser
 
 # Add new group, user, and user directory with user permissions
@@ -49,21 +50,24 @@ RUN cd / \
     && cd /
 
 ## Checkout ELM model
-# RUN wget https://github.com/NGEET/E3SM/archive/refs/tags/elm_v2.1.0-fates_sci.1.68.2_api.31.0.0.tar.gz
+# RUN wget https://github.com/NGEET/tutorial-containers/blob/ngeet-2024/docker/elm/cime_config/config
+RUN
+
 RUN wget $HLM_REPOSITORY_URL/archive/refs/tags/$HLM_TAG.tar.gz \
     && tar -zxvf $HLM_TAG.tar.gz \
-    && rm $HLM_TAG.tar.gz
+    && rm $HLM_TAG.tar.gz \
+    && mv E3SM-$HLM_TAG E3SM \
     && cd /E3SM \
     && cd /.cime \
-    && wget $REPOSITORY_RAW_URL/main/docker/elm/cime_config/config \
-    && wget $REPOSITORY_RAW_URL/main/docker/elm/cime_config/config_compilers.xml \
-    && wget $REPOSITORY_RAW_URL/main/docker/elm/cime_config/config_machines.xml \
-    && wget $REPOSITORY_RAW_URL/main/docker/elm/cime_config/gnu_docker.cmake \
+    && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/config \
+    && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/config_compilers.xml \
+    && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/config_machines.xml \
+    && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/gnu_docker.cmake \
     && cd /home/$USER/.cime \
-    && wget $REPOSITORY_RAW_URL/main/docker/elm/cime_config/config \
-    && wget $REPOSITORY_RAW_URL/main/docker/elm/cime_config/config_compilers.xml \
-    && wget $REPOSITORY_RAW_URL/main/docker/elm/cime_config/config_machines.xml \
-    && wget $REPOSITORY_RAW_URL/main/docker/elm/cime_config/gnu_docker.cmake \
+    && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/config \
+    && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/config_compilers.xml \
+    && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/config_machines.xml \
+    && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/gnu_docker.cmake \
     && cd / \
     && ln -s /usr/bin/ncap2 /usr/bin/ncap \
     && chown $USER:dockerusers /E3SM \
@@ -71,54 +75,6 @@ RUN wget $HLM_REPOSITORY_URL/archive/refs/tags/$HLM_TAG.tar.gz \
     && export USER=${USER}
 
 # Set user
-USER ${USER}
-
-## ------------------------------------------------------------------------------
-## Build example case as a test  --- only used with initial Docker build testing
-#RUN cd /E3SM/cime/scripts \
-#    && export CASE_NAME=/output/f19_g16.IGSWELMBGC \
-#    && cd /E3SM/cime/scripts \
-#    && ./create_newcase --case ${CASE_NAME} --res f19_g16 --compset IGSWELMBGC --mach docker --compiler gnu \
-#    && cd ${CASE_NAME} \
-#    && ./xmlchange DATM_CLMNCEP_YR_END=1995 \
-#    && ./xmlchange PIO_TYPENAME=netcdf \
-#    && ./xmlchange RUNDIR=${PWD}/run \
-#    && ./xmlchange EXEROOT=${PWD}/bld \
-#    && ./xmlchange NTASKS=1 \
-#    && ./xmlchange DIN_LOC_ROOT=$PWD \
-#    && cd ${CASE_NAME} \
-#    && ./case.setup \
-#    && ./case.build
-
-#RUN echo "*** ELM test build completed successfully ***"
-
-## Remove test build
-#RUN cd / \
-#    && rm -rf /output/f19_g16.IGSWELMBGC
-## ------------------------------------------------------------------------------
-
-## Install OLMT tool into the container to use with site or ensemble simulations
-# This uses a stable release of the Arctic-userpft branch of OLMT
-RUN cd /tools \
-    && git -c http.sslVerify=false clone -b Arctic-userpft --single-branch https://github.com/dmricciuto/OLMT.git \
-    && cd OLMT/ \
-    # add specific git commit as src - to try and stabilize changes and avoid new potential bugs
-    #&& git reset --hard '6284829d39dc4264989d7bfe8478345b2d749524' \
-    #&& git reset --hard '18acdfbf7a67be2df125f5ea0a3ff9d5a70986df' \
-    && git reset --hard '12fa81d44fc5207dc518b4040256a1ca5443a7b2' \
-    && chown $USER:dockerusers -R /tools/OLMT \
-    && chmod -R 777 /tools/OLMT
-
-# Copy scripts into /scripts to make availible to users
-RUN cd /scripts \
-    && wget $TOOLS_REPOSITORY_RAW_URL/main/met_scripts/ngeearctic/download_elm_singlesite_forcing_data.sh \
-    && wget $TOOLS_REPOSITORY_RAW_URL/main/elm_scripts/ngeearctic_elm_scripts/olmt_scripts/ngeearctic_site_fullrun_userdata_docker.sh \
-    && mv ngeearctic_site_fullrun_userdata_docker.sh OLMT_docker_example.sh \
-    && chown $USER:dockerusers download_elm_singlesite_forcing_data.sh \
-    && chmod +x download_elm_singlesite_forcing_data.sh \
-    && chown $USER:dockerusers OLMT_docker_example.sh \
-    && chmod +x OLMT_docker_example.sh
-
 USER ${USER}
 RUN export USER=${USER}
 ## END

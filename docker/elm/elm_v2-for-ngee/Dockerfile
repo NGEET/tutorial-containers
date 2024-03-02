@@ -14,7 +14,8 @@ LABEL maintainer.name="Gregory Lemieux" \
       version.baseos="gcc8.5"
 
 # where to get the ELM source code
-ENV REPOSITORY_URL=https://github.com/NGEET/tutorial_containers
+ENV HLM_REPOSITORY_URL=https://github.com/NGEET/E3SM/
+ENV HLM_TAG=elm_v2.1.0-fates_sci.1.68.2_api.31.0.0
 ENV REPOSITORY_RAW_URL=https://raw.githubusercontent.com/NGEET/tutorial_containers
 ENV TOOLS_REPOSITORY_RAW_URL=https://raw.githubusercontent.com/NGEET/tutorial_containers
 ENV USER=modeluser
@@ -48,9 +49,10 @@ RUN cd / \
     && cd /
 
 ## Checkout ELM model
-RUN wget $REPOSITORY_URL/raw/main/docker/elm/elm_v2-for-ngee/e3sm_source/e3sm_v2.0.0_ngee.tar.gz \
-    && tar -zxvf e3sm_v2.0.0_ngee.tar.gz \
-    && rm e3sm_v2.0.0_ngee.tar.gz \
+# RUN wget https://github.com/NGEET/E3SM/archive/refs/tags/elm_v2.1.0-fates_sci.1.68.2_api.31.0.0.tar.gz
+RUN wget $HLM_REPOSITORY_URL/archive/refs/tags/$HLM_TAG.tar.gz \
+    && tar -zxvf $HLM_TAG.tar.gz \
+    && rm $HLM_TAG.tar.gz
     && cd /E3SM \
     && cd /.cime \
     && wget $REPOSITORY_RAW_URL/main/docker/elm/cime_config/config \

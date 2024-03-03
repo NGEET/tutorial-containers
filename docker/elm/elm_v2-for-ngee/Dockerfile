@@ -14,8 +14,11 @@ LABEL maintainer.name="Gregory Lemieux" \
       version.baseos="gcc8.5"
 
 # where to get the ELM source code
+ENV FATES_TAG=sci.1.68.2_api.31.0.0
+ENV HLM_TAG=elm_v2.1.0-fates_$FATES_TAG
 ENV HLM_REPOSITORY_URL=https://github.com/NGEET/E3SM/
-ENV HLM_TAG=elm_v2.1.0-fates_sci.1.68.2_api.31.0.0
+ENV FATES_REPOSITORY_URL=https://github.com/NGEET/fates/
+ENV FATES_LOCATION=/E3SM/components/elm/src/external_models/fates/
 ENV REPO_BRANCH=ngeet-2024
 ENV REPOSITORY_RAW_URL=https://raw.githubusercontent.com/NGEET/tutorial-containers
 ENV TOOLS_REPOSITORY_RAW_URL=https://raw.githubusercontent.com/NGEET/tutorial-containers
@@ -50,13 +53,11 @@ RUN cd / \
     && cd /
 
 ## Checkout ELM model
-# RUN wget https://github.com/NGEET/tutorial-containers/blob/ngeet-2024/docker/elm/cime_config/config
-RUN
-
 RUN wget $HLM_REPOSITORY_URL/archive/refs/tags/$HLM_TAG.tar.gz \
     && tar -zxvf $HLM_TAG.tar.gz \
     && rm $HLM_TAG.tar.gz \
     && mv E3SM-$HLM_TAG E3SM \
+    && rm -rf $FATES_LOCATION \
     && cd /E3SM \
     && cd /.cime \
     && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/config \
@@ -68,6 +69,11 @@ RUN wget $HLM_REPOSITORY_URL/archive/refs/tags/$HLM_TAG.tar.gz \
     && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/config_compilers.xml \
     && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/config_machines.xml \
     && wget $REPOSITORY_RAW_URL/$REPO_BRANCH/docker/elm/cime_config/gnu_docker.cmake \
+    && cd / \
+    && wget $FATES_REPOSITORY_URL/archive/refs/tags/$FATES_TAG.tar.gz \
+    && tar -zxvf $FATES_TAG.tar.gz \
+    && rm $FATES_TAG.tar.gz \
+    && mv fates-$FATES_TAG $FATES_LOCATION \
     && cd / \
     && ln -s /usr/bin/ncap2 /usr/bin/ncap \
     && chown $USER:dockerusers /E3SM \

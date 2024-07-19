@@ -1,0 +1,14 @@
+name: fatestutorial
+
+services:
+
+    volumes:
+        - type: volume
+          source: elmdata
+          target: /inputdata
+        - type: volume
+          source: outputdata
+          target: /output
+
+
+    image: ngeetropics/elm-builds:elm_v3.0.0-fates_sci.1.76.4_api.35.1.0

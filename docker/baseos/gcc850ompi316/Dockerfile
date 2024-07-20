@@ -4,8 +4,8 @@
 # ----------------------------------------------------------------------
 
 FROM gcc:8.5
-LABEL maintainer.name="Shawn P. Serbin" \
-      maintainer.email="sserbin@bnl.gov" \
+LABEL maintainer.name="Gregory Lemieux" \
+      maintainer.email="glemieux@lbl.gov" \
       author.name="Shawn P. Serbin" \
       author.email="sserbin@bnl.gov" \
       description="GCC-based image loaded with necessary dependencies for building HLM/HLM-FATES images"

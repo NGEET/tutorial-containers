@@ -4,7 +4,8 @@
 # AMD64 version
 # ----------------------------------------------------------------------
 
-FROM fasstsimulation/baseos:gcc850ompi316-latest
+FROM ngeetropics/baseos:gcc850ompi316-latest
+
 LABEL maintainer.name="Gregory Lemieux" \
       maintainer.email="glemieux@lbl.gov" \
       author.name="Shawn P. Serbin" \

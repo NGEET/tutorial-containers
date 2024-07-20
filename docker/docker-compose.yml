@@ -1,14 +1,18 @@
 name: fatestutorial
 
 services:
-
-    volumes:
-        - type: volume
-          source: elmdata
-          target: /inputdata
-        - type: volume
-          source: outputdata
-          target: /output
-
-
+  volumes:
+    inputdata:
+    modeloutput:
+  landmodel:
     image: ngeetropics/elm-builds:elm_v3.0.0-fates_sci.1.76.4_api.35.1.0
+    container_name: elm-fates
+    volumes:
+      - inputdata:/inputdata
+      - modeloutput:/output
+  notebook:
+    image: ngeetropics/fates-tutorial-jupyter:latest
+    container_name: tutorial-notebook
+    volumes:
+      - inputdata:/inputdata
+      - modeloutput:/output

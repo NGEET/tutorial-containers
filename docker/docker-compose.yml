@@ -6,9 +6,12 @@ services:
     container_name: elm-fates
     stdin_open: true
     tty: true
+    # TODO: the scripts mount is relative to where the yaml file is.
+    # This needs restructing
     volumes:
       - inputdata:/inputdata
       - modeloutput:/output
+      - ./scripts:/scripts
   notebook:
     image: ngeetropics/fates-tutorial-jupyter:latest
     container_name: tutorial-notebook

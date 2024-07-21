@@ -12,6 +12,8 @@ services:
   notebook:
     image: ngeetropics/fates-tutorial-jupyter:latest
     container_name: tutorial-notebook
+    ports:
+      - 8888:8888
     volumes:
       - inputdata:/inputdata
       - modeloutput:/output

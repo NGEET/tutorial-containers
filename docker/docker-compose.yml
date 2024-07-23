@@ -4,6 +4,8 @@ services:
   landmodel:
     image: ngeetropics/elm-builds:elm_v3.0.0-fates_sci.1.76.4_api.35.1.0
     container_name: elm-fates
+    hostname: docker
+    user: modeluser
     stdin_open: true
     tty: true
     # TODO: the scripts mount is relative to where the yaml file is.

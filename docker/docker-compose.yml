@@ -11,7 +11,7 @@ services:
     # TODO: the scripts mount is relative to where the yaml file is.
     # This needs restructing
     volumes:
-      - inputdata:/inputdata
+      - ${INPUT_DATA}:/inputdata
       - modeloutput:/output
       - ./scripts:/scripts
   notebook:

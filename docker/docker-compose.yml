@@ -8,19 +8,17 @@ services:
     user: modeluser
     stdin_open: true
     tty: true
-    # TODO: the scripts mount is relative to where the yaml file is.
-    # This needs restructing
     volumes:
       - ${INPUT_DATA}:/inputdata
       - modeloutput:/output
-      - ./scripts:/scripts
+      - ${SCRIPT_DIR}:/scripts
   notebook:
     image: ngeetropics/fates-tutorial-jupyter:latest
     container_name: tutorial-notebook
     ports:
       - 8888:8888
     volumes:
-      - inputdata:/inputdata
+      - ${INPUT_DATA}:/inputdata
       - modeloutput:/output
 volumes:
   inputdata:

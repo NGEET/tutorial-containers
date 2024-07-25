@@ -5,7 +5,7 @@
 # ----------------------------------------------------------------------
 
 #FROM ngeetropics/baseos:gcc850ompi316-latest
-FROM fasstsimulation/baseos:gcc850ompi316-latest
+FROM ngeetropics/baseos:gcc1120ompi414-latest
 
 LABEL maintainer.name="Gregory Lemieux" \
       maintainer.email="glemieux@lbl.gov" \

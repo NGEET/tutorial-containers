@@ -15,7 +15,7 @@ services:
         source: /${TUTORIAL_DIR}/param_files/
         target: /paramfiles
       - type: bind
-        source: ${INVENTORY_DATA}
+        source: /${TUTORIAL_DIR}/inventory_data/
         target: /inventorydata
       - ${INPUT_DATA}:/inputdata
       - modeloutput:/output

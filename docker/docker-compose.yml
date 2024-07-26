@@ -26,10 +26,13 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - ${INPUT_DATA}:/inputdata
       - type: bind
         source: ${PARAM_DIR}
-        target: /paramfiles
-      - modeloutput:/output
+        target: /home/${NB_USER}/paramfiles
+      - type: bind
+        source: ${INVENTORY_DATA}
+        target: /home/${NB_USER}/inventorydata
+      - ${INPUT_DATA}:/home/${NB_USER}/inputdata
+      - modeloutput:/home/${NB_USER}/output
 volumes:
   modeloutput:

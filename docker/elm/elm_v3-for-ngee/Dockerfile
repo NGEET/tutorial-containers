@@ -46,18 +46,22 @@ RUN groupadd -r dockerusers \
 ## could change this to /mnt or something more generic in machines files
 RUN cd / \
     && mkdir -p inputdata \
+    && mkdir -p inventorydata \
     && mkdir -p example_inputs \
     && mkdir -p output \
     && mkdir -p scripts \
+    && mkdir -p paramfiles \
     && mkdir -p tools \
     && mkdir -p tools/cprnc \
     && mkdir -p baselines \
     && mkdir -p .cime \
     && mkdir -p home/$USER/.cime \
     && chown $USER inputdata \
+    && chown $USER inventorydata \
     && chown $USER example_inputs \
     && chown $USER output \
     && chown $USER scripts \
+    && chown $USER paramfiles \
     && chown $USER tools \
     && chown $USER tools/cprnc \
     && chown $USER baselines \

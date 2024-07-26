@@ -12,6 +12,12 @@ services:
       - type: bind
         source: ${SCRIPT_DIR}
         target: /scripts
+      - type: bind
+        source: ${PARAM_DIR}
+        target: /paramfiles
+      - type: bind
+        source: ${INVENTORY_DATA}
+        target: /inventorydata
       - ${INPUT_DATA}:/inputdata
       - modeloutput:/output
   notebook:
@@ -21,7 +27,9 @@ services:
       - 8888:8888
     volumes:
       - ${INPUT_DATA}:/inputdata
+      - type: bind
+        source: ${PARAM_DIR}
+        target: /paramfiles
       - modeloutput:/output
 volumes:
-  inputdata:
   modeloutput:

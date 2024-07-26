@@ -1,0 +1,7 @@
+# Instructions
+# 1. Add the local directory corresponding to where you have cloned the fates-tutorial repository
+# 2. Save the file and rename the file to ".env"
+INPUT_DATA=
+SCRIPT_DIR=
+PARAM_DIR=
+INVENTORY_DATA=

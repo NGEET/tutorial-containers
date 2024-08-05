@@ -26,10 +26,36 @@ RUN mkdir atm && \
     cd /atm/$ATM_SUBDIR3 && \
     wget $CESM_ADDRESS/atm/$ATM_SUBDIR3/aerosoldep_monthly_2000_mean_1.9x2.5_c090421.nc
 
+ENV URL_ADDRESS=https://web.lcrc.anl.gov/public/e3sm/inputdata/
+ENV LND_SUBDIR_SNICAR=clm2/snicardata
+ENV LND_SUBDIR_PARAM=clm2/paramdata
+ENV LND_SUBDIR_FIRE=clm2/firedata
+ENV LND_SUBDIR_PDEP=clm2/pdepdata
+ENV LND_SUBDIR_NDEP=clm2/ndepdata
+
+RUN cd /lnd/ && \
+    mkdir -p $LND_SUBDIR_SNICAR && \
+    mkdir -p $LND_SUBDIR_PARAM && \
+    mkdir -p $LND_SUBDIR_FIRE && \
+    mkdir -p $LND_SUBDIR_PDEP && \
+    mkdir -p $LND_SUBDIR_NDEP && \
+    cd $LND_SUBDIR_SNICAR && \
+    wget $URL_ADDRESS/lnd/$LND_SUBDIR_SNICAR/snicar_optics_5bnd_mam_c160322.nc && \
+    cd /lnd/$LND_SUBDIR_PARAM && \
+    wget $URL_ADDRESS/lnd/$LND_SUBDIR_PARAM/CNP_parameters_c131108.nc && \
+    wget $URL_ADDRESS/lnd/$LND_SUBDIR_PARAM/clm_params_c211124.nc && \
+    cd /lnd/$LND_SUBDIR_PDEP && \
+    wget $URL_ADDRESS/lnd/$LND_SUBDIR_PDEP/fpdep_clm_hist_simyr2000_1.9x2.5_c150929.nc && \
+    cd /lnd/$LND_SUBDIR_NDEP && \
+    wget $CESM_ADDRESS/lnd/$LND_SUBDIR_NDEP/fndep_clm_hist_simyr1849-2006_1.9x2.5_c100428.nc && \
+    cd /lnd/$LND_SUBDIR_FIRE && \
+    wget $URL_ADDRESS/lnd/$LND_SUBDIR_FIRE/elmforc.ssp5_hdm_0.5x0.5_simyr1850-2100_c190109.nc
+
 # Build next stage from scratch for data-only container
 FROM scratch
 
 COPY --from=wgetinput atm/ /inputdata/
+COPY --from=wgetinput lnd/ /inputdata/
 
 LABEL maintainer.name="Gregory Lemieux" \
       maintainer.email="glemieux@lbl.gov" \

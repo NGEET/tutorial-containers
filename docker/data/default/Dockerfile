@@ -52,7 +52,7 @@ RUN cd /lnd/ && \
     wget $URL_ADDRESS/lnd/$LND_SUBDIR_FIRE/elmforc.ssp5_hdm_0.5x0.5_simyr1850-2100_c190109.nc
 
 # Build next stage from scratch for data-only container
-FROM scratch
+FROM alpine
 
 COPY --from=wgetinput atm/ /inputdata/
 COPY --from=wgetinput lnd/ /inputdata/

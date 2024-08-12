@@ -41,6 +41,7 @@ RUN cd /lnd/ && \
     mkdir -p $LND_SUBDIR_NDEP && \
     cd $LND_SUBDIR_SNICAR && \
     wget $URL_ADDRESS/lnd/$LND_SUBDIR_SNICAR/snicar_optics_5bnd_mam_c160322.nc && \
+    wget $URL_ADDRESS/lnd/$LND_SUBDIR_SNICAR/snicar_drdt_bst_fit_60_c070416.nc && \
     cd /lnd/$LND_SUBDIR_PARAM && \
     wget $URL_ADDRESS/lnd/$LND_SUBDIR_PARAM/CNP_parameters_c131108.nc && \
     wget $URL_ADDRESS/lnd/$LND_SUBDIR_PARAM/clm_params_c211124.nc && \
@@ -54,8 +55,11 @@ RUN cd /lnd/ && \
 # Build next stage from scratch for data-only container
 FROM alpine
 
-COPY --from=wgetinput atm/ /inputdata/
-COPY --from=wgetinput lnd/ /inputdata/
+# RUN mkdir -p inputdata/atm && \
+#     mkdir -p inputdata/lnd
+
+COPY --from=wgetinput atm/ /inputdata/atm/
+COPY --from=wgetinput lnd/ /inputdata/lnd/
 
 LABEL maintainer.name="Gregory Lemieux" \
       maintainer.email="glemieux@lbl.gov" \

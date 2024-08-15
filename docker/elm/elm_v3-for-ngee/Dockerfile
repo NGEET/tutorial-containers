@@ -39,7 +39,7 @@ ENV USER=modeluser
 
 # Add new group, user, and user directory with user permissions
 RUN groupadd -r dockerusers \
-    && useradd -ms /bin/bash $USER -u 1001 -g dockerusers \
+    && useradd -ms /bin/bash $USER -u 1000 -g dockerusers \
     && chown $USER:dockerusers /home/$USER
 
 ## create data mount point in container

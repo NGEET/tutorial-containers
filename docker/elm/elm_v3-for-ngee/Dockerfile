@@ -47,6 +47,7 @@ RUN groupadd -r dockerusers \
 RUN cd / \
     && mkdir -p inputdata \
     && mkdir -p inventorydata \
+    && mkdir -p sitedata \
     && mkdir -p example_inputs \
     && mkdir -p output \
     && mkdir -p scripts \
@@ -58,6 +59,7 @@ RUN cd / \
     && mkdir -p home/$USER/.cime \
     && chown $USER inputdata \
     && chown $USER inventorydata \
+    && chown $USER sitedata \
     && chown $USER example_inputs \
     && chown $USER output \
     && chown $USER scripts \

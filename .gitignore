@@ -14,3 +14,5 @@
 *.nc
 *.cdl
 /docker/data/bci/met_data
+/docker/data/manaus/met_data
+/docker/data/bci/inventory_data

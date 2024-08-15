@@ -14,3 +14,5 @@ LABEL maintainer.name="Gregory Lemieux" \
       version.hlmimage="elm_v3.0.0-fates_sci.1.76.4_api.35.1.0"
 
 ADD met_data/ /site_data/
+ADD fates_bci_inventory_ctrl /site_data/
+ADD inventory_data/ /bci_inventory/

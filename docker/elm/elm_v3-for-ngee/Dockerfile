@@ -129,7 +129,7 @@ RUN wget $HLM_REPOSITORY_URL/archive/refs/tags/$HLM_TAG.tar.gz \
 
 # Modify the datm namelist definition for running GSWP3 datm with a single point
 RUN cd /E3SM/components/data_comps/datm/cime_config/ && \
-    sed -i '/strm_datvar/,/ELM_USRDAT/ s/\(ELM_USRDAT\).*/&\nQSUB shum/' namelist_definition_datm.xml && \
+    sed -i '/strm_datvar/,/ELM_USRDAT/ s/\(ELM_USRDAT\).*/&\nQBOT shum/' namelist_definition_datm.xml && \
     sed -i '/strm_datvar/,$ {/ELM_USRDAT/,$ {/ZBOT/ {d; b;}; /RH/ {d; b;}; } }' namelist_definition_datm.xml
 
 # Set user

@@ -15,4 +15,4 @@ LABEL maintainer.name="Gregory Lemieux" \
 
 ADD met_data/ /site_data/
 ADD fates_bci_inventory_ctrl /site_data/
-ADD inventory_data/ /bci_inventory/
+ADD bci_inventory_data/ /bci_inventory/

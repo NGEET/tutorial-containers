@@ -13,5 +13,5 @@
 # data
 *.nc
 *.cdl
-/docker/data/bci/met_data
-/docker/data/bci/inventory_data
+/docker/data/sites/met_data
+/docker/data/sites/bci_inventory_data

@@ -15,3 +15,4 @@
 *.cdl
 /docker/data/sites/met_data
 /docker/data/sites/bci_inventory_data
+/docker/data/sites/inventory_ctrl

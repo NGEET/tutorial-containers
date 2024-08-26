@@ -165,6 +165,8 @@ RUN cd / \
 # RUN pip3 install h5py=='3.7.0' configparser=='5.3.0' cftime=='1.6.2'
 
 # Add symlink to python3 for running OLMT
-# RUN ln -sf /usr/bin/python3 /usr/bin/python
+RUN ln -sf /usr/bin/python3 /usr/bin/python
+
+RUN pip3 install numpy scipy netcdf4
 
 ### EOF

@@ -158,15 +158,10 @@ RUN cd / \
     && rm -r netcdf-fortran-4.5.4 \
     && rm netcdf-fortran-4.5.4.tar.gz
 
-## Install python libraries for OLMT
-# RUN pip3 install wheel=='0.32.3'
-# RUN pip3 install numpy=='1.21.6' scipy=='1.7.3' mpi4py=='3.1.3'
-# RUN pip3 install netCDF4=='1.6.1'
-# RUN pip3 install h5py=='3.7.0' configparser=='5.3.0' cftime=='1.6.2'
+# This is the minimum version of scipy to avoid fates#1242
+ RUN pip3 install 'scipy==1.11.4' 'netCDF4==1.7.1'
 
-# Add symlink to python3 for running OLMT
+# Add symlink to python3 to alias python
 RUN ln -sf /usr/bin/python3 /usr/bin/python
-
-RUN pip3 install numpy scipy netcdf4
 
 ### EOF

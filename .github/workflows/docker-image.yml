@@ -9,7 +9,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [ubuntu-latest]
+        #arch: [ubuntu-latest, macos-14]
+    runs-on: ${{matrix.arch}}
     
     steps:
     - name: checkout
@@ -19,35 +23,15 @@ jobs:
       uses: docker/setup-buildx-action@v3.6.1
       env: 
           DOCKER_CONFIG: docker/baseos/gcc1120
-      #with:
-        # Buildx version. (eg. v0.3.0)
-        #version: # optional
-        # Sets the builder driver to be used
-        #driver: # optional, default is docker-container
-        # List of additional driver-specific options. (eg. image=moby/buildkit:master)
-        #driver-opts: # optional
-        # BuildKit daemon flags
-        #buildkitd-flags: # optional, default is --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host
-        # BuildKit daemon config file
-        #buildkitd-config: # optional
-        # Inline BuildKit daemon config
-        #buildkitd-config-inline: # optional
-        # Sets up docker build command as an alias to docker buildx build
-        #install: # optional, default is false
-        # Switch to this builder instance
-        #use: # optional, default is true
-        # Optional address for docker socket or context from `docker context ls`
-        #endpoint: # optional
-        # Fixed platforms for current node. If not empty, values take priority over the detected ones
-        #platforms: # optional
-        # Append additional nodes to the builder
-        #append: # optional
-        # Cache buildx binary to GitHub Actions cache backend
-        #cache-binary: # optional, default is true
-        # Cleanup temp files and remove builder at the end of a job
-        #cleanup: # optional, default is true
-        # BuildKit daemon config file
-        #config: # optional
-        # Inline BuildKit daemon config
-        #config-inline: # optional
-            
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        push: true
+        tags: user/app:latest

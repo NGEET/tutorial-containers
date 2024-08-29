@@ -1,6 +1,6 @@
 # NGEE tutorial data-only image
 #
-# Barro Colorao Island (BCI) data
+# Meteorological, surface, and domain subsets for tutorial sites including Barro Colorao Island (BCI) data
 # E3SM tag: elm_v3.0.0-fates_sci.1.76.4_api.35.1.0
 
 # Start multistage build from a minimal build with curl/wget available

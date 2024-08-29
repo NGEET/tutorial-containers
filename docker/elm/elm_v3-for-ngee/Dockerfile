@@ -127,6 +127,15 @@ RUN wget $HLM_REPOSITORY_URL/archive/refs/tags/$HLM_TAG.tar.gz \
     && chmod -R 777 /E3SM \
     && export USER=${USER}
 
+# add inventory data subdirectories
+RUN cd /inventorydata \
+    && mkdir -p bci\
+    && mkdir -p inventory_ctrl \
+    && mkdir -p userdata \
+    && chown $USER bci \
+    && chown $USER inventory_ctrl \
+    && chown $USER userdata
+
 # Set user
 USER ${USER}
 RUN export USER=${USER}

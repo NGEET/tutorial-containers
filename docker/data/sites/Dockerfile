@@ -16,3 +16,7 @@ LABEL maintainer.name="Gregory Lemieux" \
 ADD bci_inventory_data/ /bci_inventory/
 ADD inventory_ctrl/ /inventory_ctrl/
 ADD met_data/ /site_data/
+
+RUN chmod -R 755 /bci_inventory
+RUN chmod -R 755 /inventory_ctrl
+RUN chmod -R 755 /site_data

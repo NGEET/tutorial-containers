@@ -135,6 +135,8 @@ RUN cd /inventorydata \
     && chown $USER bci \
     && chown $USER inventory_ctrl \
     && chown $USER userdata
+    && cd / \
+    && chmod -R 777 /inventorydata
 
 # Set user
 USER ${USER}

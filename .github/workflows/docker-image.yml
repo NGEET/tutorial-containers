@@ -33,7 +33,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v6
       with:
-        platform: ${{ format('linux/{0}', matrix.platform }}
+        platform: linux/${{ matrix.platform }}
         context: "{{defaultContext}}:docker/baseos/gcc1120"
         push: true
         tags: ngeetropics/baseos:testbuild-${{ matrix.platform }}

@@ -11,9 +11,9 @@ jobs:
   build:
     strategy:
       matrix:
-        arch: [ubuntu-latest]
-        #arch: [ubuntu-latest, macos-14]
-    runs-on: ${{matrix.arch}}
+        # os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-14]
+    runs-on: ${{matrix.os}}
     
     steps:
     - name: checkout
@@ -35,4 +35,4 @@ jobs:
       with:
         context: "{{defaultContext}}:docker/baseos/gcc1120"
         push: true
-        tags: ngeetropics/baseos:testbuild
+        tags: ngeetropics/baseos:testbuild-${{runner.arch}}

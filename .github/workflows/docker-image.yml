@@ -1,8 +1,6 @@
 name: Docker image build - base OS
 
 on:
-  push:
-    branches: [ "ngeet-2024" ]
   pull_request:
     branches: [ "ngeet-2024" ]
   workflow_dispatch:

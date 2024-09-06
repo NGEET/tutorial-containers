@@ -134,9 +134,13 @@ RUN cd /inventorydata \
     && mkdir -p userdata \
     && chown $USER bci \
     && chown $USER inventory_ctrl \
-    && chown $USER userdata
+    && chown $USER userdata \
     && cd / \
     && chmod -R 777 /inventorydata
+
+# Change cd builtin behavior
+ADD .bashcd /home/${USER}
+RUN echo "source $HOME/.bashcd" >> .bashrc
 
 # Set user
 USER ${USER}

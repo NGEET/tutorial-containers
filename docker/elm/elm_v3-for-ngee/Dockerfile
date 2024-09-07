@@ -140,7 +140,8 @@ RUN cd /inventorydata \
 
 # Change cd builtin behavior
 ADD .bashcd /home/${USER}
-RUN echo "source $HOME/.bashcd" >> .bashrc
+RUN cd /home/${USER} \
+    && echo "source /home/${USER}/.bashcd" >> .bashrc
 
 # Set user
 USER ${USER}

@@ -52,6 +52,11 @@ RUN cd /lnd/ && \
     cd /lnd/$LND_SUBDIR_FIRE && \
     wget $URL_ADDRESS/lnd/$LND_SUBDIR_FIRE/elmforc.ssp5_hdm_0.5x0.5_simyr1850-2100_c190109.nc
 
+RUN cd atm/datm7/ && \
+    mkdir -p CO2 && \
+    cd CO2 && \
+    wget $URL_ADDRESS/atm/datm7/CO2/fco2_datm_1765-2007_c100614.nc
+
 # Build next stage from scratch for data-only container
 FROM alpine
 

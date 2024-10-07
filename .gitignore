@@ -3,3 +3,16 @@
 *._*
 .DS_store
 .DS_Store
+
+# Documentation build
+/docs/build
+
+# docker
+.env
+
+# data
+*.nc
+*.cdl
+/docker/data/sites/met_data
+/docker/data/sites/bci_inventory_data
+/docker/data/sites/inventory_ctrl

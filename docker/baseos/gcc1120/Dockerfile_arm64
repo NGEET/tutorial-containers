@@ -1,11 +1,11 @@
 # ----------------------------------------------------------------------
 # Debian baseOS docker container to use with ELM/CTSM builds
-# AMD64 version
+# ARM64 version
 # ----------------------------------------------------------------------
 
-FROM gcc:8.5
-LABEL maintainer.name="Gregory Lemieux" \
-      maintainer.email="glemieux@lbl.gov" \
+FROM arm64v8/gcc:8.5
+LABEL maintainer.name="Shawn P. Serbin" \
+      maintainer.email="sserbin@bnl.gov" \
       author.name="Shawn P. Serbin" \
       author.email="sserbin@bnl.gov" \
       description="GCC-based image loaded with necessary dependencies for building HLM/HLM-FATES images"

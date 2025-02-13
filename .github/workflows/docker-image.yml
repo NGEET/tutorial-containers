@@ -1,8 +1,6 @@
 name: Docker image build - base OS
 
 on:
-  push:
-    branches: [ "ngeet-2024" ]
   pull_request:
     branches: [ "ngeet-2024" ]
   workflow_dispatch:
@@ -12,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [linux/amd64, linux/arm64]
+        platform: [amd64, arm64]
 
     steps:
     - name: checkout
@@ -35,7 +33,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v6
       with:
-        platform: ${{ matrix.platform }}
+        platform: linux/${{ matrix.platform }}
         context: "{{defaultContext}}:docker/baseos/gcc1120"
         push: true
-        tags: ngeetropics/baseos:testbuild-${{ matrix.platform}}
+        tags: ngeetropics/baseos:testbuild-${{ matrix.platform }}
